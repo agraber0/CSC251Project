@@ -18,10 +18,8 @@ public class Project_abigail_graber
              lastName = "",
              smokingStatus = "";
       
-      System.out.print("Please enter the Policy Number: ");
-      policyNum = keyboard.nextInt();
-      
-      keyboard.nextLine();
+      System.out.print("Please enter the Policy Number: ");     
+      policyNum = keyboard.nextLine();
       
       System.out.print("Please enter the Provider Name: ");
       providerName = keyboard.nextLine();
@@ -40,7 +38,7 @@ public class Project_abigail_graber
       System.out.print("Please enter the Policyholder's Smoking Status (smoker/non-smoker): ");
       smokingStatus = keyboard.nextLine();
       
-      if (!smokingStatus.equalsIgnoreCase("smoker") && !smokingStatus.equalsIgnoreCase("non-smoker"))
+      while (!smokingStatus.equalsIgnoreCase("smoker") && !smokingStatus.equalsIgnoreCase("non-smoker"))
          {
             System.out.print("Invalid selection. Please choose from the options listed (smoker/non-smoker): ");
             smokingStatus = keyboard.nextLine();
