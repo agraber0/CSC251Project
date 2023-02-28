@@ -22,7 +22,9 @@ public class Project_abigail_graber
              smokingStatus = "";
              
       int policyNum = 0,
-          age = 0;
+          age = 0,
+          sPolicy = 0,
+          nsPolicy = 0;
           
       double height,
              weight,
@@ -66,8 +68,20 @@ public class Project_abigail_graber
          System.out.println(" pounds"); 
          System.out.printf("Policyholder's BMI: %,.2f\n", bmi);
          System.out.printf("Policy Price: $%,.2f\n", compPolicy.getInsurancePrice()); 
-         System.out.println();     
+         System.out.println(); 
+         
+         if (smokingStatus.equalsIgnoreCase("smoker"))
+         {
+            sPolicy += 1;
+         }    
+         else if (smokingStatus.equalsIgnoreCase("non-smoker"))
+         {
+            nsPolicy += 1;
+         }
       }
+      
+      System.out.println("The number of policies with a smoker is: " + sPolicy);
+      System.out.println("The number of policies with a non-smoker is: " + nsPolicy);
       
       inputFile.close();
    
