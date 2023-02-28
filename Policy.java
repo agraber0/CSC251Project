@@ -1,5 +1,6 @@
 public class Policy
 {
+  //fields
    private double policyholderHeight,
                   policyholderWeight;
    
@@ -11,6 +12,7 @@ public class Policy
                   lastName,
                   smokingStatus;
                   
+   //constructors
    public Policy()
    {
       policyholderHeight = 0;
@@ -35,6 +37,7 @@ public class Policy
       smokingStatus = status;
    }
    
+   //setters
    public void setHeight(double height)
    {
       policyholderHeight = height;
@@ -75,6 +78,7 @@ public class Policy
       smokingStatus = status;
    }
    
+   //getters
    public double getHeight()
    {
       return policyholderHeight;
@@ -115,6 +119,7 @@ public class Policy
       return smokingStatus;
    }
    
+   //Method calculates BMI
    public double getBMI()
    {
       final double FACTOR = 703;
@@ -122,8 +127,10 @@ public class Policy
       return ((policyholderWeight * FACTOR)/(policyholderHeight * policyholderHeight));
    }
    
+   //Method calculates policyholder's total insurance price
    public double getInsurancePrice()
    {
+      //constants
       double baseFee = 600,
              additionalFee = 0,
              bmiFee = ((getBMI() - 35) * 20);
@@ -142,7 +149,7 @@ public class Policy
          if (smokingStatus.equalsIgnoreCase("smoker"))
             insurancePrice += smokerFee;
          
-         if (getBMI() > BMI_MAX)
+         if (getBMI() > BMI_MAX)//calls the getBMI() method
             insurancePrice += ((getBMI() - BMI_MAX) * BMI_FEE);
 
       return insurancePrice;
