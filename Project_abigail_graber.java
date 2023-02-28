@@ -63,6 +63,5 @@ public class Project_abigail_graber
       System.out.printf("Policyholder's Weight: %,.1f\n", compPolicy.getWeight());
       System.out.printf("Policyholder's BMI: %,.2f\n", compPolicy.getBMI());
       System.out.printf("Policy Price: $%,.2f\n", compPolicy.getInsurancePrice());
-   
    }
 }
