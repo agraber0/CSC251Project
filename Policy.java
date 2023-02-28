@@ -1,5 +1,6 @@
 public class Policy
 {
+  //fields
    private double policyholderHeight,
                   policyholderWeight;
    
@@ -11,6 +12,7 @@ public class Policy
                   lastName,
                   smokingStatus;
                   
+   //constructors
    public Policy()
    {
       policyholderHeight = 0;
@@ -35,6 +37,7 @@ public class Policy
       smokingStatus = status;
    }
    
+   //setters
    public void setHeight(double height)
    {
       policyholderHeight = height;
@@ -75,6 +78,7 @@ public class Policy
       smokingStatus = status;
    }
    
+   //getters
    public double getHeight()
    {
       return policyholderHeight;
@@ -115,57 +119,39 @@ public class Policy
       return smokingStatus;
    }
    
+   //Method calculates BMI
    public double getBMI()
    {
-      double BMI = ((policyholderWeight * 703)/(policyholderHeight * policyholderHeight));
-      return BMI;
+      final double FACTOR = 703;
+      
+      return ((policyholderWeight * FACTOR)/(policyholderHeight * policyholderHeight));
    }
    
+   //Method calculates policyholder's total insurance price
    public double getInsurancePrice()
    {
+      //constants
       double baseFee = 600,
              additionalFee = 0,
              bmiFee = ((getBMI() - 35) * 20);
       
       final double ageFee = 75,
-                   smokerFee = 100;
-             
-         if (policyholderAge > 50)
-         {
-            additionalFee = ageFee;
-         }
+                   smokerFee = 100,
+                   AGE_MAX = 50,
+                   BMI_MAX = 35,
+                   BMI_FEE = 20;
+                   
+      double insurancePrice = baseFee;
          
-         else if (smokingStatus.equalsIgnoreCase("smoker"))
-         {
-            additionalFee = smokerFee;
-         }
+         if (policyholderAge > AGE_MAX)
+            insurancePrice += ageFee;
          
-         else if (getBMI() > 35)
-         {
-            additionalFee = bmiFee;
-         }
+         if (smokingStatus.equalsIgnoreCase("smoker"))
+            insurancePrice += smokerFee;
          
-         else if (policyholderAge > 50 && smokingStatus.equalsIgnoreCase("smoker"))
-         {
-            additionalFee = (ageFee + smokerFee);
-         }
-         
-         else if (policyholderAge > 50 && getBMI() > 35)
-         {
-            additionalFee = (ageFee + bmiFee);
-         }
-         
-         else if (policyholderAge > 50 && smokingStatus.equalsIgnoreCase("smoker") && getBMI() > 35)
-         {
-            additionalFee = (ageFee + smokerFee + bmiFee);
-         }
-         
-         else if (smokingStatus.equalsIgnoreCase("smoker") && getBMI() > 35)
-         {
-            additionalFee = (smokerFee + bmiFee);
-         }
-         
-      double insurancePrice = (baseFee + additionalFee);
+         if (getBMI() > BMI_MAX)//calls the getBMI() method
+            insurancePrice += ((getBMI() - BMI_MAX) * BMI_FEE);
+
       return insurancePrice;
    }
 }
