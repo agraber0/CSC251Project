@@ -1,5 +1,7 @@
 import java.util.Scanner;
-import java.io.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.io.File;
 
 public class Project_abigail_graber
 {
@@ -7,6 +9,8 @@ public class Project_abigail_graber
    public static void main(String[] args) throws IOException
    {
       File file = new File("PolicyInformation.txt");
+      
+      ArrayList<Policy> policyList = new ArrayList<Policy>();
       
       if(!file.exists())
       {
@@ -19,10 +23,10 @@ public class Project_abigail_graber
       String providerName = "",
              firstName = "",
              lastName = "",
-             smokingStatus = "";
+             smokingStatus = "",
+             policyNum = "";
              
-      int policyNum = 0,
-          age = 0,
+      int age = 0,
           sPolicy = 0,
           nsPolicy = 0;
           
@@ -33,8 +37,7 @@ public class Project_abigail_graber
       
       while (inputFile.hasNext())
       {
-         policyNum = inputFile.nextInt();
-         inputFile.nextLine();
+         policyNum = inputFile.nextLine();
          providerName = inputFile.nextLine();
          firstName = inputFile.nextLine();
          lastName = inputFile.nextLine();
@@ -43,7 +46,6 @@ public class Project_abigail_graber
          smokingStatus = inputFile.nextLine();
          height = inputFile.nextDouble();
          weight = inputFile.nextDouble();
-         bmi = ((weight * 703)/(height * height)); 
                  
          if(inputFile.hasNext())
          {
@@ -54,31 +56,33 @@ public class Project_abigail_graber
             inputFile.nextLine();
          }
          
-         Policy compPolicy = new Policy(height, weight, policyNum, age, providerName, firstName, lastName, smokingStatus);
-         
-         System.out.println("Policy Number: " + policyNum); 
-         System.out.println("Provider Name: " + providerName);
-         System.out.println("Policyholder's First Name: " + firstName);
-         System.out.println("Policyholder's Last Name: " + lastName);
-         System.out.println("Policyholder's Age: " + age);
-         System.out.println("Policyholder's Smoking Status: " + smokingStatus);
-         System.out.printf("Policyholder's Height: %,.1f", height);
-         System.out.println(" inches");
-         System.out.printf("Policyholder's Weight: %,.1f", weight);
-         System.out.println(" pounds"); 
-         System.out.printf("Policyholder's BMI: %,.2f\n", bmi);
-         System.out.printf("Policy Price: $%,.2f\n", compPolicy.getInsurancePrice()); 
+         policyList.add(new Policy(height, weight, policyNum, age, providerName, firstName, lastName, smokingStatus)); 
+      }
+      
+      for (Policy policy : policyList)
+      {
+         System.out.println("Policy Number: " + policy.getPolicyNum()); 
+         System.out.println("Provider Name: " + policy.getProviderName());
+         System.out.println("Policyholder's First Name: " + policy.getFirstName());
+         System.out.println("Policyholder's Last Name: " + policy.getLastName());
+         System.out.println("Policyholder's Age: " + policy.getAge());
+         System.out.println("Policyholder's Smoking Status: " + policy.getStatus());
+         System.out.println("Policyholder's Height: " + policy.getHeight() + " inches");
+         System.out.println("Policyholder's Weight: " + policy.getWeight() + " pounds");
+         System.out.printf("Policyholder's BMI: %,.2f\n", policy.getBMI());
+         System.out.printf("Policy Price: $%,.2f\n", policy.getInsurancePrice()); 
          System.out.println(); 
          
-         if (smokingStatus.equalsIgnoreCase("smoker"))
+         if (policy.getStatus().equalsIgnoreCase("smoker"))
          {
             sPolicy += 1;
          }    
-         else if (smokingStatus.equalsIgnoreCase("non-smoker"))
+         else if (policy.getStatus().equalsIgnoreCase("non-smoker"))
          {
             nsPolicy += 1;
          }
       }
+
       
       System.out.println("The number of policies with a smoker is: " + sPolicy);
       System.out.println("The number of policies with a non-smoker is: " + nsPolicy);
