@@ -39,4 +39,9 @@ public class Policy
       return insurancePrice;
    }
    
+   public String toString()
+   {
+      return String.format();
+   }
+   
 }
