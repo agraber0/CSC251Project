@@ -119,6 +119,10 @@ public class PolicyHolder
    {
       return smokingStatus;
    }
-
+   
+   public String toString()
+   {
+      return String.format();
+   }
    
 }
