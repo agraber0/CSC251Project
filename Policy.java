@@ -1,14 +1,40 @@
 public class Policy
 {
   //fields
-   private PolicyHolder holder;
+   private PolicyHolder policyHolder;
+   private static int instanceCount = 0;
       
+   public Policy(PolicyHolder holder)
+   {
+      policyHolder = new PolicyHolder(holder);
+   }
+   
+   public Policy()
+   {
+      instanceCount++;
+   }
+   
+   public void setPolicyHolder(PolicyHolder holder)
+   {
+      policyHolder = new PolicyHolder(holder);
+   }
+   
+   public PolicyHolder getPolicyHolder()
+   {
+      return new PolicyHolder(policyHolder);
+   }
+   
+   public int getInstanceCount()
+   {
+      return instanceCount;
+   }
+   
    //Method calculates BMI
    public double getBMI()
    {
       final double FACTOR = 703;
       
-      return ((policyholderWeight * FACTOR)/(policyholderHeight * policyholderHeight));
+      return ((policyHolder.getWeight() * FACTOR)/(policyHolder.getWeight() * policyHolder.getHeight()));
    }
    
    //Method calculates policyholder's total insurance price
@@ -27,10 +53,10 @@ public class Policy
                    
       double insurancePrice = baseFee;
          
-         if (policyholderAge > AGE_MAX)
+         if (policyHolder.getAge() > AGE_MAX)
             insurancePrice += ageFee;
          
-         if (smokingStatus.equalsIgnoreCase("smoker"))
+         if (policyHolder.getStatus().equalsIgnoreCase("smoker"))
             insurancePrice += smokerFee;
          
          if (getBMI() > BMI_MAX)//calls the getBMI() method
