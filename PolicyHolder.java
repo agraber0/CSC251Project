@@ -1,7 +1,5 @@
 public class PolicyHolder
 {
-   private Policy policy;
-   
    private double policyholderHeight,
                   policyholderWeight;
    
@@ -14,7 +12,7 @@ public class PolicyHolder
                   policyNum;
                   
    //constructors
-   public Policy()
+   public PolicyHolder()
    {
       policyholderHeight = 0;
       policyholderWeight = 0;
@@ -26,7 +24,7 @@ public class PolicyHolder
       smokingStatus = "";
    }
    
-   public Policy(double height, double weight, String num, int age, String provider, String first, String last, String status)
+   public PolicyHolder(double height, double weight, String num, int age, String provider, String first, String last, String status)
    {
       policyholderHeight = height;
       policyholderWeight = weight;
@@ -36,6 +34,18 @@ public class PolicyHolder
       firstName = first;
       lastName = last;
       smokingStatus = status;
+   }
+   
+   public PolicyHolder(PolicyHolder object2)
+   {
+      policyholderHeight = object2.policyholderHeight;
+      policyholderWeight = object2.policyholderWeight;
+      policyNum = object2.policyNum;
+      policyholderAge = object2.policyholderAge;
+      providerName = object2.providerName;
+      firstName = object2.firstName;
+      lastName = object2.lastName;
+      smokingStatus = object2.smokingStatus;
    }
    
    //setters
@@ -122,7 +132,13 @@ public class PolicyHolder
    
    public String toString()
    {
-      return String.format();
-   }
-   
+      return String.format("Policy Number: " + policyNum +
+             "\nProvider Name: " + providerName + 
+             "\nPolicyholder's First Name: " + firstName +
+             "\nPolicyholder's Last Name: " + lastName +
+             "\nPolicyholder's Age: " + policyholderAge + 
+             "\nPolicyholder's Smoking Status (Y/N): " + smokingStatus +
+             "\nPolicyholder's Height: " + policyholderHeight + " inches" +
+             "\nPolicyholder's Weight: " + policyholderWeight + " pounds");
+   }   
 }

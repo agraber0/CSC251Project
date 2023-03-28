@@ -1,9 +1,9 @@
 public class Policy
 {
   //fields
-   private PolicyHolder policyHolder;
    private static int instanceCount = 0;
-      
+   private PolicyHolder policyHolder;
+   
    public Policy(PolicyHolder holder)
    {
       policyHolder = new PolicyHolder(holder);
@@ -34,7 +34,7 @@ public class Policy
    {
       final double FACTOR = 703;
       
-      return ((policyHolder.getWeight() * FACTOR)/(policyHolder.getWeight() * policyHolder.getHeight()));
+      return ((policyHolder.getWeight() * FACTOR)/(policyHolder.getHeight() * policyHolder.getHeight()));
    }
    
    //Method calculates policyholder's total insurance price
@@ -67,7 +67,9 @@ public class Policy
    
    public String toString()
    {
-      return String.format();
+      return String.format(policyHolder.toString() +
+             "\nPolicyholder's BMI: %,.2f\n" +
+             "Policy Price: $%,.2f\n", getBMI(), getInsurancePrice());
    }
    
 }
